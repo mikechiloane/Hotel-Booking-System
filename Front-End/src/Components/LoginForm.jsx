@@ -13,6 +13,7 @@ const LoginForm = () => {
     const [authenticated, setAuthenticated] = useState("")
     const Navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
+    const [status,setStatus]= useState("");
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
@@ -40,14 +41,18 @@ const LoginForm = () => {
 
                 setAuthenticated(localStorage.getItem("Authorization")
                 )
- 
-                if (authenticated.startsWith("Bearer")) {
-                    Navigate("/")
-                    console.log("Used it")
-        
-                }
+
             }
-        )
+        ).finally(()=>{
+            if (authenticated.startsWith("Bearer")) {
+                Navigate("/")
+                console.log("Used it")
+            }
+
+            else{
+                setStatus("Invalid Login Details")
+            }
+        })
 
       
     }
@@ -76,6 +81,8 @@ const LoginForm = () => {
                         id="password"
                         placeholder="enter password"
                     />
+
+                    <p className="text-center text-red-700">{status}</p>
 
                     <button onClick={login} className="bg-green-700 p-2 rounded-sm text-white w-full" >Login</button>
                     <button onClick={() => {
