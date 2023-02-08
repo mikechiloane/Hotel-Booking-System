@@ -132,7 +132,7 @@ const SignUpForm = () => {
                         placeholder="enter password"
                     />
 
-                    <button className="bg-green-700 p-2 rounded-sm text-white w-full" >Login</button>
+                    <button className="bg-green-700 p-2 rounded-sm text-white w-full" >Submit</button>
                 </form>
             </div>
         </div>

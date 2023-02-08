@@ -2,10 +2,9 @@ import axios from 'axios';
 // import AllBookings from './Bookings';
 import React, { useState, useEffect, useRef } from 'react';
 import SockJsClient from 'react-stomp';
-
-
 import NavBar from './NavBar';
 import { ThreeCircles } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
 
@@ -17,6 +16,7 @@ const HomePage = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const Navigate = useNavigate();
 
 
     const handleCheckInChange = (event) => {
@@ -56,6 +56,7 @@ const HomePage = () => {
                 setIsLoading(false)
                 setIsSearching(true)
                     (console.log(res))
+                
             }
         )
 
@@ -77,7 +78,7 @@ const HomePage = () => {
                 headers: {
                     Authorization: localStorage.getItem("Authorization")
                 }
-            })
+            }).then(res=>Navigate("/mybooking"))
 
             
     }
